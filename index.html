@@ -40,15 +40,16 @@
     </div>
 </nav>
 
-    <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" class="hidden overflow-hidden transition-all duration-300 ease-in-out md:hidden">
-        <div class="flex flex-col items-center space-y-4 py-4">
-            <a href="#" class="text-gray-700 hover:text-black text-xl">Home</a>
-            <a href="#" class="text-gray-700 hover:text-black text-xl">Recipes</a>
-            <a href="#" class="text-gray-700 hover:text-black text-xl">About</a>
-            <a href="#" class="text-gray-700 hover:text-black text-xl">Contact</a>
-        </div>
+<!-- Mobile Menu (Hidden by default) -->
+<div id="mobile-menu" class="hidden overflow-hidden transition-all duration-300 ease-in-out md:hidden">
+    <div class="flex flex-col items-start space-y-4 py-4 pl-16"> <!-- Increased padding from pl-8 to pl-20 -->
+        <a href="#" class="text-black hover:text-black text-xl">Home</a>
+        <a href="#" class="text-black hover:text-black text-xl">Recipes</a>
+        <a href="#" class="text-black hover:text-black text-xl">About</a>
+        <a href="#" class="text-black hover:text-black text-xl">Contact</a>
     </div>
+</div>
+
 
    <!-- Main Content Section -->
 <section class="flex flex-col md:flex-row items-center justify-between px-8 md:px-40 py-16">
@@ -132,7 +133,7 @@
 <section class="relative">
     <img src="./media/veggies.jpg" alt="Fresh Veggies" class="w-full h-auto object-cover" style="height: 400px;"> <!-- Adjust height as needed -->
     <div class="absolute inset-0 bg-black opacity-30"></div> <!-- Optional overlay for text readability -->
-    <div class="absolute inset-0 flex items-center justify-start pl-6 md:pl-80 pt-32"> <!-- Responsive padding -->
+    <div class="absolute inset-0 flex items-center justify-start pl-6 md:pl-[calc(50%-700px)] pt-32"> <!-- Further left alignment -->
         <div class="text-left">
             <h2 class="text-5xl md:text-6xl font-bold text-white mb-2">Every week</h2>
             <h2 class="text-5xl md:text-6xl font-bold text-white mb-2">more recipes</h2>
@@ -140,6 +141,7 @@
         </div>
     </div>
 </section>
+
 
     <script src="js/index.js"></script>
 </body>
