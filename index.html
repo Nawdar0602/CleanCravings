@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CleanCravings</title>
+    <title>CleanCravings ®</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="./media/logo.png" type="image/x-icon"> <!-- Favicon link -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body style="background-color: #D6E0A3;" class="font-sans">
@@ -78,7 +79,8 @@
                 <div class="flex flex-col justify-center p-4 md:w-2/3 lg:w-[360px]">
                     <h3 class="text-2xl font-semibold text-black mb-2">Vegetable Chow Mein</h3>
                     <p class="text-gray-700 mb-3">Ever had Vegan Vegetable Chow Mein? Today’s highlight is this scrumptious, plant-based version with crisp veggies and a flavorful sauce.</p>
-                    <a href="#" class="border border-gray-100 text-black font-semibold py-2 px-4 rounded-lg inline-block hover:bg-gray-100 w-32 text-center shadow hover:shadow-md">View Recipe</a>
+                    <a href="#" class="border border-gray-100 bg-black text-white font-semibold py-2 px-4 rounded-lg inline-block hover:bg-gray-800 w-32 text-center shadow hover:shadow-md mt-4">View Recipe</a>
+
                 </div>
                 <!-- Image Section -->
                 <div class="flex flex-col justify-center md:w-1/3 lg:w-[240px]">
@@ -108,7 +110,7 @@
 <div class="flex flex-col md:flex-row md:space-x-8 mb-12">
     <!-- Image Section (on the left) -->
     <div class="bg-transparent border-2 border-gray-100 rounded-lg w-full md:w-1/2 lg:w-[620px] overflow-hidden flex items-center justify-center">
-        <img src="./media/salmon.jpg" alt="Grilled Vegetables" class="w-full h-full object-cover">
+        <img src="./media/green.jpg" alt="Grilled Vegetables" class="w-full h-full object-cover">
     </div>
 
     <!-- Text Section -->
@@ -128,12 +130,11 @@
 
 
 
-
 <!-- Veggies Hero Section -->
 <section class="relative">
     <img src="./media/veggies.jpg" alt="Fresh Veggies" class="w-full h-auto object-cover" style="height: 400px;"> <!-- Adjust height as needed -->
     <div class="absolute inset-0 bg-black opacity-30"></div> <!-- Optional overlay for text readability -->
-    <div class="absolute inset-0 flex items-center justify-start pl-6 md:pl-[calc(50%-700px)] pt-32"> <!-- Further left alignment -->
+    <div class="absolute inset-0 flex items-center justify-start pl-6 md:pl-[calc(43%-500px)]"> <!-- Moved text slightly more up -->
         <div class="text-left">
             <h2 class="text-5xl md:text-6xl font-bold text-white mb-2">Every week</h2>
             <h2 class="text-5xl md:text-6xl font-bold text-white mb-2">more recipes</h2>
@@ -142,6 +143,25 @@
     </div>
 </section>
 
+
+<!-- New Centered Layout with Text on Left and Image on Right -->
+<section class="bg-white py-24"> <!-- Increased padding from 16 to 24 to create more space -->
+    <div class="flex flex-col md:flex-row items-center justify-center md:space-x-8 mb-12 max-w-screen-xl mx-auto">
+        <!-- Text Section (centered on the left) -->
+        <div class="bg-transparent rounded-lg w-full md:w-1/2 lg:w-[600px] p-4 text-center md:text-left flex flex-col items-center md:items-start">
+            <h3 class="text-4xl md:text-5xl font-bold text-black mb-8">Share your recipe with others?</h3>
+            <p class="text-lg text-gray-700 mb-24 mt-16 text-center md:text-left">Got a recipe that's too good to keep to yourself? Share your underrated culinary gem with the world on CleanCravings, and let others experience your delicious creation!</p>
+            
+            <!-- Button to share recipe -->
+            <a href="#" class="inline-block bg-black text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-800">Share Your Recipe</a>
+        </div>
+
+<!-- Image Section (centered on the right) -->
+<div class="bg-transparent border-2 border-gray-100 rounded-lg w-full md:w-1/2 lg:w-[620px] overflow-hidden flex items-center justify-center mt-8 md:mt-0">
+    <img src="./media/prep.jpg" alt="Share Your Recipe" class="w-full h-auto md:h-full object-cover sm:w-1/2 md:w-full"> <!-- Adjust width for responsive -->
+</div>
+    </div>
+</section>
 
     <script src="js/index.js"></script>
 </body>
