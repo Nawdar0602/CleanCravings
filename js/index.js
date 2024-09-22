@@ -18,3 +18,44 @@ function toggleMenu() {
         }, { once: true });
     }
 }
+
+async function fetchRecipes() {
+    const input = document.getElementById('search-input');
+    const suggestions = document.getElementById('suggestions');
+    const query = input.value.trim();
+
+    if (query.length === 0) {
+        suggestions.innerHTML = '';
+        suggestions.classList.add('hidden');
+        return;
+    }
+
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+    const data = await response.json();
+
+    if (data.meals) {
+        suggestions.innerHTML = data.meals.map(meal => `
+            <div class="flex items-center p-2 hover:bg-gray-100 cursor-pointer" onclick="selectRecipe('${meal.strMeal}')">
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class="w-12 h-12 rounded mr-2">
+                <span>${meal.strMeal}</span>
+            </div>
+        `).join('');
+        suggestions.classList.remove('hidden');
+    } else {
+        suggestions.innerHTML = '<div class="p-2">No results found</div>';
+        suggestions.classList.remove('hidden');
+    }
+
+    // Close suggestions when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!suggestions.contains(event.target) && event.target !== input) {
+            suggestions.classList.add('hidden');
+        }
+    });
+}
+
+function selectRecipe(meal) {
+    const input = document.getElementById('search-input');
+    input.value = meal;
+    document.getElementById('suggestions').classList.add('hidden');
+}
