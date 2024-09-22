@@ -26,3 +26,14 @@ body {
     html {
         scroll-behavior: smooth;
     }
+
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 9px; /* Width of the scrollbar */
+    }
+    
+    
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: black; /* Scrollbar color */
+        border-radius: 20px; /* Rounded scrollbar */
+    }
