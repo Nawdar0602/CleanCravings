@@ -2,17 +2,14 @@
 require 'config.php';
 
 try {
-
-    $query = "SELECT * FROM crud_agenda";
+    $query = "SELECT * FROM Recipes";
     $stmt = $conn->prepare($query);
     $stmt->execute();
 
     $resultaten = $stmt->fetchAll();
-
     $aantalRijen = count($resultaten);
 
-    include 'views/agenda_view.php';
-
+    include 'views/recipes_view.php';
 } catch (PDOException $e) {
     echo "<p>Fout</p>";
     echo "<p>Query: " . $e->getMessage() . "</p>";

@@ -1,26 +1,30 @@
 <?php
 require 'config.php';
 try {
-    $query = "INSERT INTO crud_agenda (Onderwerp, Inhoud, Begindatum , Einddatum, Prioriteit, Status)";
-    $query .= "VALUES (:Onderwerp, :Inhoud, :Begindatum , :Einddatum, :Prioriteit, :Status)";
+    $query = "INSERT INTO Recipes (Titel, Beschrijving, Recipe, Foto, Naam)";
+    $query .= "VALUES (:Titel, :Beschrijving, :Recipe, :Foto, :Naam)";
 
     $stmt = $conn->prepare($query);
 
+    // Handle file upload
+    $foto = '';
+    if(isset($_FILES['Foto']) && $_FILES['Foto']['error'] == 0){
+        $foto = file_get_contents($_FILES['Foto']['tmp_name']);
+    }
+
     $stmt->execute([
-        'Onderwerp' => $_POST['Onderwerp'],
-        'Inhoud' => $_POST['Inhoud'],
-        'Begindatum' => $_POST['Begindatum'],
-        'Einddatum' => $_POST['Einddatum'],
-        'Prioriteit' => $_POST['Prioriteit'],
-        'Status' => $_POST['Status'],
+        'Titel' => $_POST['Titel'],
+        'Beschrijving' => $_POST['Beschrijving'],
+        'Recipe' => $_POST['Recipe'],
+        'Foto' => $foto,
+        'Naam' => $_POST['Naam'],
     ]);
 
     if ($stmt->rowCount()) {
-        echo "Agenda item succesvol toegevoegd.<br/>";
+        echo "Recept succesvol toegevoegd.<br/>";
     } else {
-        echo "Fout bij het toevoegen van het agenda item.<br/>";
+        echo "Fout bij het toevoegen van het recept.<br/>";
     }
-
 } catch (PDOException $e) {
     echo "Fout bij toevoegen<br/>";
     echo "Foutmelding" . $e->getMessage() . "<br/>";
