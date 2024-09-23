@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* style.css */
+
+body {
+    font-family: 'CobblerSans', sans-serif; /* Apply to the whole body */
+}
+
+/* Load the custom font */
+@font-face {
+    font-family: 'CobblerSans';
+    src: url('../fonts/CobblerSans-Bold.ttf') format('truetype');
+}
+
+*{
+    font-family: "CobblerSans";
+    }
+
+    .search-icon {
+        z-index: 1;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
