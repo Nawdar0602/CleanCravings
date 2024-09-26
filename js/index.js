@@ -1,3 +1,23 @@
+function toggleMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    console.log("Toggling menu visibility"); // Keep this for debugging
+
+    // Toggle the 'show' class
+    if (mobileMenu.classList.contains('show')) {
+        mobileMenu.classList.remove('show');
+        setTimeout(() => {
+            mobileMenu.classList.add('hidden'); // Hide after transition
+        }, 300); // Match this time with the CSS transition duration
+    } else {
+        mobileMenu.classList.remove('hidden'); // Show the menu first
+        setTimeout(() => {
+            mobileMenu.classList.add('show'); // Then add the show class
+        }, 10); // Short delay to trigger CSS transition
+    }
+}
+
+_____
+
 // Fetch recipes based on user input
 async function fetchRecipes() {
     const input = document.getElementById('search-input');
@@ -28,14 +48,20 @@ async function fetchRecipes() {
 
     // Close suggestions when clicking outside
     document.addEventListener('click', (event) => {
+        const suggestions = document.getElementById('suggestions');
         if (!suggestions.contains(event.target) && event.target !== input) {
             suggestions.classList.add('hidden');
+        }
+
+        // Close mobile menu if it's open and clicked outside
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (!mobileMenu.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
         }
     });
 }
 
-
-
+// Show recipe modal function
 async function showRecipe(mealId) {
     const modal = document.getElementById('recipe-modal');
     const recipeContent = document.getElementById('recipe-content');

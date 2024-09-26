@@ -39,3 +39,17 @@ body {
     }
 
     
+
+    #mobile-menu {
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+        max-height: 0; /* Initially hide the menu */
+        opacity: 0; /* Initially set opacity to 0 */
+        overflow: hidden; /* Hide overflowing content */
+    }
+    
+    #mobile-menu.show {
+        max-height: 500px; /* Set a max-height that's larger than your menu */
+        opacity: 1; /* Set opacity to 1 when visible */
+    }
+
+    
