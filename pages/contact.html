@@ -100,7 +100,7 @@
             <div class="flex flex-col md:flex-row bg-transparent border-2 border-gray-100 rounded-lg mb-8 md:mb-0 md:w-1/2 lg:w-[600px] md:max-h-[350px]">
                 <!-- Form Section -->
                 <div class="flex flex-col justify-center p-4 md:w-2/3 lg:w-[360px]">
-                    <form action="send_email.php" method="POST" class="space-y-4">
+                    <form id="contactForm" action="send_email.php" method="POST" class="space-y-4">
                         <div>
                             <input type="text" name="name" placeholder="Your Name" class="w-full p-2 border border-gray-300 rounded" required>
                         </div>
@@ -187,37 +187,42 @@
 <script src="../js/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    fetch('pages/send_email.php', {
-        method: 'POST',
-        body: new FormData(this)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Success!',
-                text: data.message
-            });
-        } else {
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        fetch('pages/send_email.php', {
+            method: 'POST',
+            body: new FormData(this)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: data.message
+                });
+                form.reset();
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data.message
+                });
+            }
+        })
+        .catch(error => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: data.message
+                text: 'An unexpected error occurred. Please try again later.'
             });
-        }
-    })
-    .catch(error => {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'An unexpected error occurred. Please try again later.'
         });
     });
 });
+
 
 </script>
 </body>
