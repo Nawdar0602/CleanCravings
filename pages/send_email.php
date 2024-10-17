@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/json');
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = strip_tags(trim($_POST["name"]));
     $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
@@ -6,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($name) || empty($message) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
-        echo "Please fill out all fields and enter a valid email address.";
+        echo json_encode(["status" => "error", "message" => "Please fill out all fields and enter a valid email address."]);
         exit;
     }
 
@@ -43,12 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mail($recipient, $subject, $email_content, $headers)) {
         http_response_code(200);
-        echo "Thank You! Your message has been sent.";
+        echo json_encode(["status" => "success", "message" => "Thank You! Your message has been sent."]);
     } else {
         http_response_code(500);
-        echo "Oops! Something went wrong and we couldn't send your message.";
+        echo json_encode(["status" => "error", "message" => "Oops! Something went wrong and we couldn't send your message."]);
     }
 } else {
     http_response_code(403);
-    echo "There was a problem with your submission, please try again.";
+    echo json_encode(["status" => "error", "message" => "There was a problem with your submission, please try again."]);
 }
