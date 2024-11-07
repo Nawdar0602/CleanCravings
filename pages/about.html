@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - CleanCravings ®</title>
+    <title>About Us - CleanCravings ®</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="../media/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
@@ -27,27 +27,21 @@
 
     <!-- Suggestions List -->
     <div id="suggestions" class="absolute left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-48 overflow-y-auto hidden custom-scrollbar">
-        <!-- Suggestions will be populated here -->
     </div>
 </div>
 
 <!-- Recipe Modal -->
 <div id="recipe-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20 hidden">
     <div class="bg-white w-full md:w-4/5 lg:w-3/4 max-h-[80vh] p-4 rounded-lg shadow-lg relative overflow-y-auto custom-scrollbar">
-        <!-- Close Button -->
         <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeModal()">
             &times;
         </button>
-
-        <!-- Recipe Content -->
         <div id="recipe-content" class="p-4">
-            <!-- Content will be populated dynamically -->
         </div>
     </div>
 </div>
 
-
- <!-- Hamburger Icon for mobile (Visible on small screens) -->
+ <!-- Hamburger Icon for mobile -->
  <div class="md:hidden absolute top-14 right-10">
     <button onclick="toggleMenu()" class="text-gray-700 hover:text-black focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36" viewBox="0 0 72 72">
@@ -56,106 +50,94 @@
     </button>
 </div>
 
-    <!-- Menu Items Section (Visible on medium and larger screens) -->
+    <!-- Menu Items Section -->
     <div class="hidden md:flex items-center space-x-14 mr-14">
         <a href="../index.html" class="text-2xl text-black hover:text-gray-700">Home</a>
         <a href="../php/recipes.php" class="text-2xl text-black hover:text-gray-700">Recipes</a>
-        <a href="about.html" class="text-2xl text-black hover:text-gray-700">About</a>
+        <a href="#" class="text-2xl text-black hover:text-gray-700">About</a>
         <a href="contact.html" class="text-2xl text-black hover:text-gray-700">Contact</a>
     </div>
 
 </nav>
-<!-- Mobile Menu (Hidden by default) -->
+
+<!-- Mobile Menu -->
 <div id="mobile-menu" class="hidden overflow-hidden transition-all duration-300 ease-in-out md:hidden">
     <div class="flex flex-col items-start space-y-4 py-4 pl-16">
         <a href="../index.html" class="text-black hover:text-black text-xl">Home</a>
         <a href="../php/recipes.php" class="text-black hover:text-black text-xl">Recipes</a>
-        <a href="about.html" class="text-black hover:text-black text-xl">About</a>
+        <a href="#" class="text-black hover:text-black text-xl">About</a>
         <a href="contact.html" class="text-black hover:text-black text-xl">Contact</a>
     </div>
 </div>
 
-   <!-- Main Content Section -->
+<!-- Main Content Section -->
 <section class="flex flex-col md:flex-row items-center justify-between px-8 md:px-40 py-16">
     <div class="max-w-lg flex flex-col items-start md:items-start space-y-4 md:space-y-6">
-        <h1 class="text-5xl md:text-6xl font-bold text-black mb-2 md:mb-4">Get in touch</h1>
-        <p class="text-2xl md:text-3xl text-black mb-4">We'd love to hear from you!</p>
+        <h1 class="text-5xl md:text-6xl font-bold text-black mb-2 md:mb-4">Our Story</h1>
+        <p class="text-2xl md:text-3xl text-black mb-4">Bringing healthy food to your table</p>
+        <p class="text-lg text-black">CleanCravings started with a simple mission: making healthy eating both delicious and accessible. We believe that nutritious food should never compromise on taste.</p>
         <div class="flex space-x-4">
-            <a href="#contact-form" class="bg-white text-black font-semibold py-2 px-6 rounded-lg shadow hover:bg-gray-100">Contact Us</a>
-            <a href="#faq-section" class="bg-white text-black font-semibold py-2 px-6 rounded-lg shadow hover:bg-gray-100">FAQ</a>
+            <a href="#our-mission" class="bg-white text-black font-semibold py-2 px-6 rounded-lg shadow hover:bg-gray-100">Our Mission</a>
+            <a href="#our-team" class="bg-white text-black font-semibold py-2 px-6 rounded-lg shadow hover:bg-gray-100">Our Team</a>
         </div>
     </div>
     <div class="mt-8 md:mt-0 flex-shrink-0 ml-4 md:ml-8">
-        <img src="../media/poke.png" alt="Contact Us" class="rounded-full w-72 md:w-80 lg:w-[450px] xl:w-[550px]">
+        <img src="../media/poke.png" alt="About Us" class="rounded-full w-72 md:w-80 lg:w-[450px] xl:w-[550px]">
     </div>
 </section>
 
-<!-- Contact Form Section -->
-<section id="contact-form" class="bg-white px-8 md:px-40 py-16">
+<!-- Our Mission Section -->
+<section id="our-mission" class="bg-white px-8 md:px-40 py-16">
     <div class="max-w-screen-xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-black mb-12 text-left">Reach Out to Us</h2>
-        <div class="flex flex-col md:flex-row md:space-x-8">
-            
-            <!-- Large Rectangle Card (Contact Form) -->
-            <div class="flex flex-col md:flex-row bg-transparent border-2 border-gray-100 rounded-lg mb-8 md:mb-0 md:w-1/2 lg:w-[600px] md:max-h-[350px]">
-                <!-- Form Section -->
-                <div class="flex flex-col justify-center p-4 md:w-2/3 lg:w-[360px]">
-                    <form id="contactForm" action="send_email.php" method="POST" class="space-y-4">
-                        <div>
-                            <input type="text" name="name" placeholder="Your Name" class="w-full p-2 border border-gray-300 rounded" required>
-                        </div>
-                        <div>
-                            <input type="email" name="email" placeholder="Your Email" class="w-full p-2 border border-gray-300 rounded" required>
-                        </div>
-                        <div>
-                            <textarea name="message" placeholder="Your Message" rows="3" class="w-full p-2 border border-gray-300 rounded" required></textarea>
-                        </div>
-                        <button type="submit" class="bg-black text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-800">Send Message</button>
-                    </form>
-                </div>
-                <!-- Image Section -->
-                <div class="flex flex-col justify-center md:w-1/3 lg:w-[240px]">
-                    <div class="w-full h-full overflow-hidden rounded-lg">
-                        <img src="../media/chowmein.jpg" alt="Contact Us" class="w-full h-full object-cover">
-                    </div>
-                </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-black mb-12">Our Mission</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-transparent border-2 border-gray-100 rounded-lg p-8">
+                <h3 class="text-2xl font-bold mb-4">Healthy Living</h3>
+                <p class="text-lg">We're dedicated to promoting healthy eating habits through delicious, nutritious recipes that anyone can make at home.</p>
             </div>
-            
-            <!-- Contact Information -->
-            <div class="flex flex-col md:w-1/2 space-y-8 md:space-y-0 md:space-x-8 mb-12">
-                <div class="bg-transparent border-2 border-gray-100 rounded-xl w-full md:w-1/2 lg:w-[300px] overflow-hidden flex items-center justify-center max-h-[350px] p-4">
-                    <div>
-                        <h3 class="text-2xl font-semibold text-black mb-4">Our Details</h3>
-                        <p class="mb-2">Email: cleancravings@joranvdlinde.nl</p>
-                    </div>
-                </div>
-                <div class="bg-transparent border-2 border-gray-100 rounded-xl w-full md:w-1/2 lg:w-[300px] overflow-hidden flex items-center justify-center max-h-[350px] p-4">
-                    <div>
-                        <h3 class="text-2xl font-semibold text-black mb-4">Questions?</h3>
-                        <p class="mb-2">For any inquiries, please feel free to reach out to us.</p>
-                    </div>
-                </div>
+            <div class="bg-transparent border-2 border-gray-100 rounded-lg p-8">
+                <h3 class="text-2xl font-bold mb-4">Global Flavors</h3>
+                <p class="text-lg">Our recipes bring together international cuisines and healthy ingredients, proving that nutritious food can be exciting and flavorful.</p>
+            </div>
+            <div class="bg-transparent border-2 border-gray-100 rounded-lg p-8">
+                <h3 class="text-2xl font-bold mb-4">Community</h3>
+                <p class="text-lg">We're building a community of food lovers who share our passion for healthy, delicious meals and sustainable living.</p>
+            </div>
+            <div class="bg-transparent border-2 border-gray-100 rounded-lg p-8">
+                <h3 class="text-2xl font-bold mb-4">Education</h3>
+                <p class="text-lg">We provide nutritional information and cooking tips to help you make informed choices about your food.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FAQ Section -->
-<section id="faq-section" class="bg-white py-24">
+<!-- Our Team Section -->
+<section id="our-team" class="bg-white py-24">
     <div class="max-w-screen-xl mx-auto px-8 md:px-40">
-        <h2 class="text-4xl md:text-5xl font-bold text-black mb-12">Frequently Asked Questions</h2>
-        <div class="space-y-8">
-            <div>
-                <h3 class="text-2xl font-semibold text-black mb-2">How can I submit a recipe?</h3>
-                <p class="text-gray-700">You can submit your recipe by clicking on the "Share Your Recipe" button on our recipes page and fill in the form.</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-black mb-12">Meet Our Team</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="w-48 h-48 rounded-full mx-auto mb-4 bg-gray-200 flex items-center justify-center">
+                    <span class="text-4xl text-gray-600">J</span>
+                </div>
+                <h3 class="text-2xl font-semibold">Joran</h3>
+                <p class="text-gray-600">Lead Developer</p>
+                <p class="text-gray-600">Frontend & Backend Developer</p>
             </div>
-            <div>
-                <h3 class="text-2xl font-semibold text-black mb-2">Are all recipes on CleanCravings healthy?</h3>
-                <p class="text-gray-700">While we focus on healthier options, we have a diverse range of recipes. Each recipe includes nutritional information to help you make informed choices.</p>
+            <div class="text-center">
+                <div class="w-48 h-48 rounded-full mx-auto mb-4 bg-gray-200 flex items-center justify-center">
+                    <span class="text-4xl text-gray-600">N</span>
+                </div>
+                <h3 class="text-2xl font-semibold">Nawdar</h3>
+                <p class="text-gray-600">Frontend Developer</p>
+                <p class="text-gray-600">UI/UX Designer</p>
             </div>
-            <div>
-                <h3 class="text-2xl font-semibold text-black mb-2">How often are new recipes added?</h3>
-                <p class="text-gray-700">We add new recipes weekly to keep our collection fresh and exciting. Check back often for the latest additions!</p>
+            <div class="text-center">
+                <div class="w-48 h-48 rounded-full mx-auto mb-4 bg-gray-200 flex items-center justify-center">
+                    <span class="text-4xl text-gray-600">K</span>
+                </div>
+                <h3 class="text-2xl font-semibold">Keano</h3>
+                <p class="text-gray-600">Documentation Specialist</p>
             </div>
         </div>
     </div>
@@ -164,18 +146,15 @@
 <!-- Footer Section -->
 <footer class="bg-[#D6E0A3] py-14">
     <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-        <!-- CleanCravings Text and Slogan Section -->
         <div class="flex flex-col items-center mb-6 md:mb-0">
             <a href="../index.html" class="text-3xl md:text-4xl font-bold text-black">CleanCravings</a>
             <p class="text-lg text-black">Global flavors, healthier choices.</p>
         </div>
 
-        <!-- Email Address Section -->
         <div class="mb-6 md:mb-0">
             <p class="text-lg text-black"><a href="mailto:cleancraving@mail.com" class="text-black hover:text-gray-700">cleancravings@joranvdlinde.nl</a></p>
         </div>
 
-        <!-- Links Section -->
         <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8">
             <a href="#" class="text-black hover:text-gray-700">Privacy Policy</a>
             <a href="#" class="text-black hover:text-gray-700">Terms of Service</a>

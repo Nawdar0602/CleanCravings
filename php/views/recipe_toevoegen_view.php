@@ -1,5 +1,4 @@
 <?php
-// Add CSRF token generation here
 $csrf_token = bin2hex(random_bytes(32));
 $_SESSION['csrf_token'] = $csrf_token;
 ?>
@@ -9,29 +8,64 @@ $_SESSION['csrf_token'] = $csrf_token;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Recipe</title>
+    <title>Add Recipe - CleanCravings ®</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="../media/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
-<body class="bg-gradient-to-r from-green-400 to-blue-500 font-sans min-h-screen flex items-center justify-center">
-<div class="container mx-auto px-4 py-8">
-    <div class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 max-w-2xl mx-auto">
-        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Add New Recipe</h1>
+<body style="background-color: #D6E0A3;" class="font-sans">
+
+<!-- Navbar Section -->
+<nav class="flex flex-col md:flex-row justify-between py-6 px-8 mb-12 md:mb-16 relative">
+    <img src="../media/logo.png" alt="CleanCravings Logo" class="md:hidden w-28 ml-4">
+    <a href="../index.html" class="text-3xl md:text-4xl font-bold text-black ml-4 hidden md:inline">CleanCravings</a>
+    
+    <div class="hidden md:flex items-center space-x-14 mr-14">
+        <a href="../index.html" class="text-2xl text-black hover:text-gray-700">Home</a>
+        <a href="recipes.php" class="text-2xl text-black hover:text-gray-700">Recipes</a>
+        <a href="#" class="text-2xl text-black hover:text-gray-700">About</a>
+        <a href="../pages/contact.html" class="text-2xl text-black hover:text-gray-700">Contact</a>
+    </div>
+
+    <!-- Hamburger Menu for Mobile -->
+    <div class="md:hidden absolute top-14 right-10">
+        <button onclick="toggleMenu()" class="text-gray-700 hover:text-black focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 72 72">
+                <path d="M56 48c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 48 54.798 48 56 48zM56 32c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 32 54.798 32 56 32zM56 16c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 16 54.798 16 56 16z"></path>
+            </svg>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden">
+    <div class="flex flex-col items-start space-y-4 py-4 pl-16">
+        <a href="../index.html" class="text-black hover:text-black text-xl">Home</a>
+        <a href="recipes.php" class="text-black hover:text-black text-xl">Recipes</a>
+        <a href="#" class="text-black hover:text-black text-xl">About</a>
+        <a href="../pages/contact.html" class="text-black hover:text-black text-xl">Contact</a>
+    </div>
+</div>
+
+<!-- Main Form Section -->
+<div class="container mx-auto px-8 md:px-40 py-8">
+    <div class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
+        <h1 class="text-4xl font-bold text-black mb-8">Share Your Recipe</h1>
+        
         <form action="recipe_toevoegen_verwerk.php" method="POST" enctype="multipart/form-data" id="recipeForm">
             <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="Title">
-                        <i class="fas fa-utensils mr-2"></i>Title:
-                    </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="Title" name="Title" required>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-xl text-black mb-2" for="Title">Recipe Title</label>
+                    <input class="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400" type="text" id="Title" name="Title" required>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="Category">
-                        <i class="fas fa-tags mr-2"></i>Category:
-                    </label>
-                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Category" name="Category" required>
-                        <option value="">Select a category</option>
+                
+                <div>
+                    <label class="block text-xl text-black mb-2" for="Category">Category</label>
+                    <select class="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400" id="Category" name="Category" required>
+                        <option value="">Select category</option>
                         <option value="Breakfast">Breakfast</option>
                         <option value="Lunch">Lunch</option>
                         <option value="Dinner">Dinner</option>
@@ -40,62 +74,80 @@ $_SESSION['csrf_token'] = $csrf_token;
                     </select>
                 </div>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="Description">
-                    <i class="fas fa-align-left mr-2"></i>Description:
-                </label>
-                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Description" name="Description" required rows="3"></textarea>
+
+            <div class="mb-6">
+                <label class="block text-xl text-black mb-2" for="Description">Description</label>
+                <textarea class="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400" id="Description" name="Description" rows="3" required></textarea>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="Photo">
-                    <i class="fas fa-camera mr-2"></i>Photo URL:
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="url" id="Photo" name="Photo" required placeholder="Enter image URL">
+
+            <div class="mb-6">
+                <label class="block text-xl text-black mb-2" for="Photo">Photo URL</label>
+                <input class="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400" type="url" id="Photo" name="Photo" required placeholder="Enter image URL">
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="Recipe">
-                    <i class="fas fa-list mr-2"></i>Ingredients:
-                </label>
-                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Recipe" name="Recipe" required rows="4"></textarea>
+
+            <div class="mb-6">
+                <label class="block text-xl text-black mb-2" for="Recipe">Ingredients</label>
+                <textarea class="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400" id="Recipe" name="Recipe" rows="4" required></textarea>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="Instructions">
-                    <i class="fas fa-tasks mr-2"></i>Instructions:
-                </label>
-                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Instructions" name="Instructions" required rows="4"></textarea>
+
+            <div class="mb-6">
+                <label class="block text-xl text-black mb-2" for="Instructions">Instructions</label>
+                <textarea class="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400" id="Instructions" name="Instructions" rows="4" required></textarea>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="PrepTime">
-                        <i class="fas fa-clock mr-2"></i>Prep Time (min):
-                    </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="PrepTime" name="PrepTime" required>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div>
+                    <label class="block text-xl text-black mb-2" for="PrepTime">Prep Time (min)</label>
+                    <input class="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400" type="number" id="PrepTime" name="PrepTime" required>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="CookTime">
-                        <i class="fas fa-fire mr-2"></i>Cook Time (min):
-                    </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="CookTime" name="CookTime" required>
+
+                <div>
+                    <label class="block text-xl text-black mb-2" for="CookTime">Cook Time (min)</label>
+                    <input class="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400" type="number" id="CookTime" name="CookTime" required>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="Servings">
-                        <i class="fas fa-users mr-2"></i>Servings:
-                    </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="Servings" name="Servings" required>
+
+                <div>
+                    <label class="block text-xl text-black mb-2" for="Servings">Servings</label>
+                    <input class="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400" type="number" id="Servings" name="Servings" required>
                 </div>
             </div>
-            <div class="flex items-center justify-between">
-                <a href="recipes.php" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-                    <i class="fas fa-arrow-left mr-2"></i>Back
-                </a>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110" type="submit">
-                    <i class="fas fa-plus-circle mr-2"></i>Add Recipe
-                </button>
+
+            <div class="flex justify-between mt-8">
+                <a href="recipes.php" class="bg-black text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800">Back to Recipes</a>
+                <button type="submit" class="bg-black text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800">Share Recipe</button>
             </div>
         </form>
     </div>
 </div>
+
+<!-- Footer -->
+<footer class="bg-[#D6E0A3] py-14">
+    <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center">
+        <div class="flex flex-col items-center mb-6 md:mb-0">
+            <a href="../index.html" class="text-3xl md:text-4xl font-bold text-black">CleanCravings</a>
+            <p class="text-lg text-black">Global flavors, healthier choices.</p>
+        </div>
+        
+        <div class="mb-6 md:mb-0">
+            <p class="text-lg text-black">
+                <a href="mailto:cleancravings@joranvdlinde.nl" class="text-black hover:text-gray-700">cleancravings@joranvdlinde.nl</a>
+            </p>
+        </div>
+        
+        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8">
+            <a href="#" class="text-black hover:text-gray-700">Privacy Policy</a>
+            <a href="#" class="text-black hover:text-gray-700">Terms of Service</a>
+            <a href="#" class="text-black hover:text-gray-700">Contact Us</a>
+        </div>
+    </div>
+</footer>
+
 <script>
+    function toggleMenu() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    }
+
     document.getElementById('recipeForm').addEventListener('submit', function(event) {
         var title = document.getElementById('Title').value;
         var category = document.getElementById('Category').value;
@@ -113,5 +165,6 @@ $_SESSION['csrf_token'] = $csrf_token;
         }
     });
 </script>
+
 </body>
 </html>
